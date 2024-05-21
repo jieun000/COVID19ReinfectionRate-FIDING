@@ -1,5 +1,7 @@
 import MySQLdb
 from a_init_data import loc_code_list
+
+# DB(MySql)에 테이블을 만드는 함수.
 def create_loc_code_tbl():
     for loc_code in loc_code_list:
         conn = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="1234", db="c")

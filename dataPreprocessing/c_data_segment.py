@@ -7,6 +7,7 @@ data_dict={i:pd.DataFrame(columns=["date_day", "loc", "total_cases",'total_death
 data1 = pd.read_csv('owid-covid-data.csv')[['date', 'continent', 'location', 'new_cases', 'new_deaths', 'population']]
 data2= pd.read_csv('vaccinations.csv')[['date', 'location', 'daily_vaccinations']]
 
+# 대륙와 국가를 사용해 분류하는 함수(국가별 분류, 대륙, 국가, 달 별로 분류한 객체, 분류해 넣을 객체)
 def segment_by_continent_and_location(group,continent,location,data_dict,C_L_dict):
     """
         데이터 분류의 효율성을 높이기 위해 대륙 별로 분류된 데이터에서
@@ -23,9 +24,8 @@ def segment_by_continent_and_location(group,continent,location,data_dict,C_L_dic
                     data_dict[name] = pd.concat([data_dict.get(name, pd.DataFrame({})), group])
             else:
                 data_dict[name] = pd.concat([data_dict.get(name, pd.DataFrame({})), group])
-# pd.to_datetime(): datetime(날짜와 시간) 객체로 변환.
-# dt.: datetime 구성 요소(예: 연, 월, 일 등)에 액세스.
-# to_period('M'): 월별로 그룹화.
+
+# 데이터를 분할하여 CSV 파일로 저장하는 함수
 def segment_data_to_csv():
     data=pd.merge(data1, data2, on=['date', 'location'], how='outer')
 

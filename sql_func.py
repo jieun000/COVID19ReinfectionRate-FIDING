@@ -1,6 +1,7 @@
 import mysql.connector
 
-def from_sql(date_loc_data_dict,loc_code_list):
+# MySQL 데이터베이스에서 데이터를 읽어와서 date_loc_data_dict에 저장하는 함수
+def from_sql(date_loc_data_dict,loc_code_list): # (빈 객체, 지역 리스트)
     for loc_code in loc_code_list:
         mysql_config = {
             'user': 'root',

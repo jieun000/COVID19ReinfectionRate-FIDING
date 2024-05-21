@@ -3,6 +3,7 @@ import MySQLdb
 import datetime
 from a_init_data import loc_code_list
 
+# 문자열을 실수로 변환하는 함수
 def string_to_float(s):
     """
     csv의 열데이터'date_day, total_cases, total_deaths,people_vaccinated' 중 Nan이 있어
@@ -12,6 +13,8 @@ def string_to_float(s):
     """
     if s=='': return 0.0
     else: return float(s)
+
+# DB에 데이터를 입력하는 함수
 def insert_data():
     for loc_code in loc_code_list:
         with open(f'../data_segment_by_loc_code/%s.csv'%loc_code) as csvfile:

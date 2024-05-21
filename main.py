@@ -3,14 +3,17 @@ import pandas as pd
 from sql_func import from_sql
 from dataPreprocessing.a_init_data import loc_code_list
 
+# Flask 애플리케이션을 생성하고 app 변수에 할당
 app = Flask(__name__)
 
 date_loc_data_dict = {}
 
+# 데이터프레임을 특정 방식(기본값은 'split')으로 JSON으로 변환하는 함수
 def to_json2(df,orient='split'):
     df_json = df.to_json(orient=orient, force_ascii=False)
     return json.loads(df_json)
 
+# 루트 경로에 대한 라우트를 정의. 즉, 홈페이지에 접속했을 때 실행될 함수를 지정
 @app.route('/')
 def start():
     global date_loc_data_dict
